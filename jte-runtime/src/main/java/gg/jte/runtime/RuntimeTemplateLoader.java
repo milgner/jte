@@ -9,15 +9,7 @@ public class RuntimeTemplateLoader extends TemplateLoader {
 
     public RuntimeTemplateLoader(Path classDirectory, ClassLoader parentClassLoader, String packageName) {
         super(classDirectory, packageName);
-        this.singleClassLoader = createClassLoader(parentClassLoader);
-    }
-
-    @Override
-    protected ClassLoader createClassLoader(ClassLoader parentClassLoader) {
-        if (classDirectory == null) {
-            return Thread.currentThread().getContextClassLoader();
-        }
-        return super.createClassLoader(parentClassLoader);
+        this.singleClassLoader = parentClassLoader;
     }
 
     @Override
